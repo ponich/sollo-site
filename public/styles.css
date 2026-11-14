@@ -788,6 +788,64 @@ section {
   fill: var(--green-light);
 }
 
+/* Power-line tower for the grid */
+.node__tower .node__icon {
+  stroke-width: 2.4;
+}
+
+.node__insulator {
+  stroke: var(--amber);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.node__beacon {
+  fill: #ff6b5a;
+  animation: beacon 1.6s ease-in-out infinite;
+}
+
+@keyframes beacon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+/* Battery cells fill one by one with bright green, like a phone charging, then start over */
+.node__cell {
+  --cell-empty: rgba(243, 238, 228, 0.1);
+  --cell-full: #34d058;
+  fill: var(--cell-full);
+  animation: 4s linear infinite;
+}
+
+.node__cell--1 { animation-name: cell-1; }
+.node__cell--2 { animation-name: cell-2; }
+.node__cell--3 { animation-name: cell-3; }
+.node__cell--4 { animation-name: cell-4; }
+
+@keyframes cell-1 {
+  0%, 4% { fill: var(--cell-empty); }
+  8%, 90% { fill: var(--cell-full); }
+  100% { fill: var(--cell-empty); }
+}
+
+@keyframes cell-2 {
+  0%, 24% { fill: var(--cell-empty); }
+  28%, 90% { fill: var(--cell-full); }
+  100% { fill: var(--cell-empty); }
+}
+
+@keyframes cell-3 {
+  0%, 44% { fill: var(--cell-empty); }
+  48%, 90% { fill: var(--cell-full); }
+  100% { fill: var(--cell-empty); }
+}
+
+@keyframes cell-4 {
+  0%, 64% { fill: var(--cell-empty); }
+  68%, 90% { fill: var(--cell-full); }
+  100% { fill: var(--cell-empty); }
+}
+
 .node__bolt {
   fill: var(--night);
 }

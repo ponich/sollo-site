@@ -548,7 +548,11 @@ function homePage(products, projects, assetVersion) {
             <path class="wire wire--out" d="M300 290 L 300 360"/>
             <g class="node" transform="translate(70 60)">
               <rect width="100" height="100" rx="22"/>
-              <path d="M50 20v14M38 34h24l-6 44H44zM30 50h40" class="node__icon"/>
+              <g class="node__tower">
+                <path d="M34 84 46 22 50 13 54 22 66 84M24 32h52M30 48h40M44 32l15 16M56 32 41 48M41 48l25 36M59 48 34 84M30 84h40" class="node__icon"/>
+                <path d="M26 32v7M74 32v7M32 48v7M68 48v7" class="node__insulator"/>
+                <circle cx="50" cy="13" r="2.6" class="node__beacon"/>
+              </g>
               <text x="50" y="128">Мережа</text>
             </g>
             <g class="node" transform="translate(70 300)">
@@ -571,7 +575,10 @@ function homePage(products, projects, assetVersion) {
               <rect width="100" height="70" rx="18"/>
               <rect x="24" y="22" width="46" height="26" rx="4" class="node__icon"/>
               <rect x="70" y="30" width="5" height="10" rx="2" class="node__fill"/>
-              <rect x="28" y="26" width="28" height="18" rx="2" class="node__fill"/>
+              <rect x="28" y="26" width="8" height="18" rx="1.5" class="node__fill node__cell node__cell--1"/>
+              <rect x="38" y="26" width="8" height="18" rx="1.5" class="node__fill node__cell node__cell--2"/>
+              <rect x="48" y="26" width="8" height="18" rx="1.5" class="node__fill node__cell node__cell--3"/>
+              <rect x="58" y="26" width="8" height="18" rx="1.5" class="node__fill node__cell node__cell--4"/>
               <text x="50" y="94">Акумулятор</text>
             </g>
           </svg>
