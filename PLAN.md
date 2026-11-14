@@ -67,19 +67,23 @@ npm start
 | Що | Де |
 |---|---|
 | Робоча копія | `/root/apps/sollo-site` |
-| Git-репозиторій для деплою | `/root/apps/sollo-site.git`, гілка `develop` |
-| Служба | `sollo-site` (systemd, `deploy/sollo-site.service`), Node 22, порт 80, автозапуск після перезавантаження |
-| Налаштування | `/root/apps/sollo-site/.env`: `PORT=80`, `SITE_URL=http://161.97.107.9`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1` |
+| Git-дзеркало | `/root/apps/sollo-site.git`, тягне гілку `develop` з https://github.com/ponich/sollo-site |
+| Служба сайту | `sollo-site` (`deploy/sollo-site.service`), Node 22, порт 80, автозапуск після перезавантаження |
+| Автооновлення | таймер `sollo-site-update.timer` щохвилини запускає `deploy/update.sh` |
+| Налаштування | `/root/apps/sollo-site/.env`: `PORT=80`, `SITE_URL=http://161.97.107.9`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
 | Заявки | `/root/apps/sollo-site/data/leads.json` |
-| Логи | `journalctl -u sollo-site -f` |
+| Логи сайту | `journalctl -u sollo-site -f` |
+| Логи деплою | `journalctl -u sollo-site-update` |
 
-Оновлення: закомітити зміни в `develop` і виконати
+Оновлення: закомітити зміни в `develop` і запушити на GitHub.
 
 ```bash
-git deploy
+git push origin develop
 ```
 
-Це пуш на сервер. Хук `deploy/post-receive` оновлює файли, перезапускає службу (вона збирає сайт при старті) і показує в терміналі результат або останні рядки логу, якщо запуск не вдався. Аліас `git deploy` налаштований лише в локальному `.git/config` і використовує ключ з `~/Documents/private/contabo.com`.
+Протягом хвилини сервер побачить новий коміт, оновить файли, перевстановить systemd-юніти з `deploy/` і перезапустить сайт (він збирається при старті). Якщо нова версія не запустилась, `update.sh` запише в лог останні рядки помилки і поверне попередній коміт. Деплоїться лише `develop`; інші гілки сервер ігнорує.
+
+Репозиторій публічний: `.env`, заявки, `INFO.md` і `research/` у git не потрапляють.
 
 Поки сайт працює за IP, `SITE_NOINDEX=1` закриває його від пошуковиків: усі сторінки з `noindex`, а `robots.txt` забороняє все. Коли з'явиться домен: прописати `SITE_URL=https://домен`, прибрати `SITE_NOINDEX` і `SHOW_DRAFTS`, поставити перед сайтом Caddy або nginx для HTTPS.
 
