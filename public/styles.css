@@ -313,6 +313,11 @@ section {
   font-size: clamp(1.8rem, 3vw, 2.4rem);
 }
 
+/* "Ціна за запитом" is meant to be smaller than a real price; .price above used to override it */
+.price.price--request:not(.price--lg) {
+  font-size: 1rem;
+}
+
 .topbar {
   position: sticky;
   top: 0;
@@ -1654,9 +1659,14 @@ input[type='range'] {
   margin-top: auto;
   padding-top: 16px;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+.product__footer .btn {
+  flex-shrink: 0;
 }
 
 .product .chips {
