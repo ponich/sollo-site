@@ -1536,9 +1536,9 @@ input[type='range'] {
   display: none;
 }
 
+/* Only a shadow on hover: lifting the card made its buttons sit out of line with its neighbours */
 .product:hover {
   box-shadow: var(--shadow);
-  transform: translateY(-3px);
 }
 
 .product__visual {
@@ -1575,17 +1575,13 @@ input[type='range'] {
 .product__visual--photo img {
   width: 100%;
   height: 100%;
-  padding: 12% 10% 6%;
+  padding: 17% 12% 6%;
   object-fit: contain;
-  transition: transform 0.3s;
-}
-
-.product:hover .product__visual--photo img {
-  transform: scale(1.03);
 }
 
 .product__spec {
   position: absolute;
+  z-index: 1;
   top: 16px;
   left: 18px;
   display: flex;
@@ -2589,6 +2585,10 @@ input[type='range'] {
   }
 }
 
+.menu-toggle {
+  display: none;
+}
+
 @media (max-width: 1240px) {
   .nav {
     display: none;
@@ -2596,6 +2596,60 @@ input[type='range'] {
 
   .topbar__contacts {
     margin-left: auto;
+  }
+
+  /* Menu button with three bars; turns into a cross while the menu is open */
+  .menu-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    padding: 0 10px;
+    border: 1px solid var(--night-line);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--light);
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    display: block;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .topbar.is-open .menu-toggle span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .topbar.is-open .menu-toggle span:nth-child(2) { opacity: 0; }
+  .topbar.is-open .menu-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .topbar.is-open .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 8px clamp(16px, 4vw, 40px) 16px;
+    background: #15130f;
+    border-bottom: 1px solid var(--night-line);
+    box-shadow: 0 18px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .topbar.is-open .nav a {
+    padding: 14px 0;
+    font-size: 1.02rem;
+    border-bottom: 1px solid var(--night-line);
+  }
+
+  .topbar.is-open .nav a:last-child {
+    border-bottom: none;
   }
 }
 
@@ -2673,6 +2727,17 @@ input[type='range'] {
   .logo span {
     white-space: normal;
     font-size: 0.95rem;
+  }
+
+  /* Logo, two phones and the menu button share a narrow phone screen */
+  .topbar .topbar__inner {
+    gap: 12px;
+  }
+
+  .topbar .menu-toggle {
+    width: 38px;
+    height: 38px;
+    padding: 0 9px;
   }
 
   .hero__actions .btn {
@@ -3089,5 +3154,16 @@ input[type='range'] {
 
   .case__cover img {
     aspect-ratio: 16 / 9;
+  }
+}
+
+/* Smallest phones: keep the company name to two lines next to both phone numbers */
+@media (max-width: 400px) {
+  .topbar .logo span {
+    font-size: 0.86rem;
+  }
+
+  .topbar .topbar__phone {
+    font-size: 0.78rem;
   }
 }

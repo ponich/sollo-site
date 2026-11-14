@@ -280,7 +280,7 @@ function header() {
   <header class="topbar">
     <div class="container topbar__inner">
       ${logo()}
-      <nav class="nav" aria-label="Головне меню">
+      <nav class="nav" id="site-nav" aria-label="Головне меню">
         <a href="/#calculator">Калькулятор</a>
         <a href="${categoryPath('kit')}">Комплекти</a>
         <a href="${categoryPath('inverter')}">Інвертори</a>
@@ -295,6 +295,9 @@ function header() {
         </div>
         <a class="btn btn--small btn--tg" href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram</a>
       </div>
+      <button type="button" class="menu-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Відкрити меню">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>`;
 }

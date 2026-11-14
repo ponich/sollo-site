@@ -443,6 +443,22 @@ function initLightbox() {
   });
 }
 
+function initMenu() {
+  const topbar = document.querySelector('.topbar');
+  const toggle = topbar?.querySelector('.menu-toggle');
+  if (!toggle) return;
+  const setOpen = (open) => {
+    topbar.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Закрити меню' : 'Відкрити меню');
+  };
+  toggle.addEventListener('click', () => setOpen(!topbar.classList.contains('is-open')));
+  topbar.querySelectorAll('.nav a').forEach((link) => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') setOpen(false); });
+  document.addEventListener('click', (event) => { if (!topbar.contains(event.target)) setOpen(false); });
+}
+
+initMenu();
 initCalculator();
 initCatalogFilters();
 initProjectFilters();
