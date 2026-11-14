@@ -216,7 +216,7 @@ function contactSection(contextText = '') {
             </a>
             <a class="channel" href="https://t.me/${site.telegram}" target="_blank" rel="noopener">
               <span class="channel__icon channel__icon--tg">${telegramIcon()}</span>
-              <span><span class="channel__label">Telegram</span><strong>@${esc(site.telegram)}</strong></span>
+              <span><span class="channel__label">Telegram</span><strong>${esc(site.telegramLabel)}</strong></span>
             </a>
           </div>
           <p class="contact__hours">Працюємо ${esc(site.workingHours)}</p>
@@ -318,7 +318,7 @@ function footer() {
         <span class="footer__title">Контакти</span>
         <a href="tel:${site.phone}">${esc(site.phoneLabel)}</a>
         <a href="tel:${site.phone2}">${esc(site.phone2Label)}</a>
-        <a href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram @${esc(site.telegram)}</a>
+        <a href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram ${esc(site.telegramLabel)}</a>
         <span>${esc(site.workingHours)}</span>
       </div>
     </div>
@@ -353,7 +353,6 @@ function storeSchema() {
     address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: site.country },
     areaServed: { '@type': 'Country', name: 'Україна' },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: site.openingHours.days, opens: site.openingHours.opens, closes: site.openingHours.closes }],
-    sameAs: [`https://t.me/${site.telegram}`],
   };
 }
 

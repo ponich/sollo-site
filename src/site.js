@@ -13,7 +13,9 @@ module.exports = {
   phoneLabel: '+38 (093) 512-26-49',
   phone2: '+380965122649',
   phone2Label: '+38 (096) 512-26-49',
-  telegram: 'svitlodim',
+  // t.me/+<number> opens a chat with whoever has that number in Telegram.
+  telegram: '+380935122649',
+  telegramLabel: '+38 (093) 512-26-49',
   workingHours: 'Пн–Сб, 9:00–20:00',
   openingHours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '20:00' },
   city: 'Київ',
