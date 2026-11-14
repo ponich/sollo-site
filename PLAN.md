@@ -62,18 +62,22 @@ npm start
 
 ## Сервер і деплой
 
-Сайт працює на Contabo (Ubuntu 26.04) за адресою http://161.97.107.9, поки без домену.
+Сайт працює на Contabo (Ubuntu 26.04, 161.97.107.9) за адресою https://sollo.ponich.com.
+
+Ланцюжок: відвідувач → Cloudflare (DNS з проксі, HTTPS для відвідувачів) → Caddy на сервері (порти 80/443, сертифікат Let's Encrypt, поновлюється автоматично) → сайт на `127.0.0.1:3000`. Запити на IP-адресу і на `http://` переадресовуються на `https://sollo.ponich.com` зі збереженням шляху.
 
 | Що | Де |
 |---|---|
 | Робоча копія | `/root/apps/sollo-site` |
 | Git-дзеркало | `/root/apps/sollo-site.git`, тягне гілку `develop` з https://github.com/ponich/sollo-site |
-| Служба сайту | `sollo-site` (`deploy/sollo-site.service`), Node 22, порт 80, автозапуск після перезавантаження |
+| Служба сайту | `sollo-site` (`deploy/sollo-site.service`), Node 22, `127.0.0.1:3000`, автозапуск після перезавантаження |
+| HTTPS | Caddy, конфіг `deploy/Caddyfile` → `/etc/caddy/Caddyfile`; при деплої оновлюється і перезавантажується, якщо змінився |
 | Автооновлення | таймер `sollo-site-update.timer` щохвилини запускає `deploy/update.sh` |
-| Налаштування | `/root/apps/sollo-site/.env`: `PORT=80`, `SITE_URL=http://161.97.107.9`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| Налаштування | `/root/apps/sollo-site/.env`: `PORT=3000`, `HOST=127.0.0.1`, `TRUST_PROXY=1`, `SITE_URL=https://sollo.ponich.com`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
 | Заявки | `/root/apps/sollo-site/data/leads.json` |
 | Логи сайту | `journalctl -u sollo-site -f` |
 | Логи деплою | `journalctl -u sollo-site-update` |
+| Логи HTTPS | `journalctl -u caddy` |
 
 Оновлення: закомітити зміни в `develop` і запушити на GitHub.
 
@@ -85,7 +89,11 @@ git push origin develop
 
 Репозиторій публічний: `.env`, заявки, `INFO.md` і `research/` у git не потрапляють.
 
-Поки сайт працює за IP, `SITE_NOINDEX=1` закриває його від пошуковиків: усі сторінки з `noindex`, а `robots.txt` забороняє все. Коли з'явиться домен: прописати `SITE_URL=https://домен`, прибрати `SITE_NOINDEX` і `SHOW_DRAFTS`, поставити перед сайтом Caddy або nginx для HTTPS.
+`TRUST_PROXY=1` бере IP відвідувача із заголовків Cloudflare, щоб ліміт заявок рахувався для кожної людини окремо, а не для Cloudflare.
+
+Поки `SITE_NOINDEX=1`, сайт закритий від пошуковиків: усі сторінки з `noindex`, а `robots.txt` забороняє все. Перед запуском: прибрати `SITE_NOINDEX` і `SHOW_DRAFTS` з `.env` на сервері і перезапустити `sollo-site`.
+
+Сертифікат отримується через перевірку HTTP-01: Cloudflare пропускає `/.well-known/acme-challenge/` на сервер по HTTP. Режим SSL у Cloudflare має бути Full (strict); режим Flexible дасть нескінченну переадресацію.
 
 ## Заявки в Telegram
 
