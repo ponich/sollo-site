@@ -1,0 +1,8 @@
+[Unit]
+Description=Deploy new commits of SOLLO site from GitHub
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /root/apps/sollo-site/deploy/update.sh
