@@ -1,0 +1,18 @@
+[Unit]
+Description=SOLLO site
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/root/apps/sollo-site
+ExecStart=/usr/bin/node --env-file-if-exists=.env server.js
+Environment=NODE_ENV=production
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=multi-user.target

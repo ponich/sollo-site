@@ -1,0 +1,16 @@
+{
+  "name": "svitlodim",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Інтернет-магазин гібридних інверторів",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.js",
+    "build": "node --env-file-if-exists=.env scripts/build.js",
+    "telegram:chat-id": "node --env-file-if-exists=.env scripts/telegram.js chat-id",
+    "telegram:test": "node --env-file-if-exists=.env scripts/telegram.js test"
+  },
+  "engines": {
+    "node": ">=22.9"
+  }
+}
