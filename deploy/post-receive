@@ -4,14 +4,15 @@ set -eu
 APP_DIR=/root/apps/sollo-site
 GIT_DIR=/root/apps/sollo-site.git
 SERVICE=sollo-site
+BRANCH=develop
 
 while read -r oldrev newrev ref; do
-  if [ "$ref" != "refs/heads/main" ]; then
-    echo "Skip $ref: only main is deployed"
+  if [ "$ref" != "refs/heads/$BRANCH" ]; then
+    echo "Skip $ref: only $BRANCH is deployed"
     continue
   fi
   echo "Deploying $newrev"
-  git --work-tree="$APP_DIR" --git-dir="$GIT_DIR" checkout -f main
+  git --work-tree="$APP_DIR" --git-dir="$GIT_DIR" checkout -f "$BRANCH"
   cp "$APP_DIR/deploy/sollo-site.service" /etc/systemd/system/$SERVICE.service
   systemctl daemon-reload
   systemctl restart $SERVICE
