@@ -353,6 +353,7 @@ function storeSchema() {
     address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: site.country },
     areaServed: { '@type': 'Country', name: 'Україна' },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: site.openingHours.days, opens: site.openingHours.opens, closes: site.openingHours.closes }],
+    sameAs: [`https://t.me/${site.telegram}`],
   };
 }
 
