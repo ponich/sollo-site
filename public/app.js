@@ -1,7 +1,8 @@
 const APPLIANCES = [
   { id: 'router', name: 'Роутер і оптичний термінал', watts: 20, duty: 1, surge: 1, qty: 1, icon: 'wifi' },
   { id: 'lights', name: 'LED-освітлення, 5 ламп', watts: 50, duty: 1, surge: 1, qty: 1, icon: 'bulb' },
-  { id: 'fridge', name: 'Холодильник', watts: 150, duty: 0.4, surge: 4, qty: 1, icon: 'fridge' },
+  // surge = start-up power / running power. A fridge compressor starts at about 1.5 kW (150 W × 10).
+  { id: 'fridge', name: 'Холодильник', watts: 150, duty: 0.4, surge: 10, qty: 1, icon: 'fridge' },
   { id: 'laptop', name: 'Ноутбук', watts: 65, duty: 1, surge: 1, qty: 1, icon: 'laptop' },
   { id: 'phones', name: 'Зарядка телефонів', watts: 20, duty: 0.5, surge: 1, qty: 1, icon: 'phone' },
   { id: 'tv', name: 'Телевізор', watts: 100, duty: 1, surge: 1, qty: 0, icon: 'tv' },
