@@ -210,6 +210,10 @@ function contactSection(contextText = '') {
               <span class="channel__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg></span>
               <span><span class="channel__label">Телефон</span><strong>${esc(site.phoneLabel)}</strong></span>
             </a>
+            <a class="channel" href="tel:${site.phone2}">
+              <span class="channel__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg></span>
+              <span><span class="channel__label">Телефон</span><strong>${esc(site.phone2Label)}</strong></span>
+            </a>
             <a class="channel" href="https://t.me/${site.telegram}" target="_blank" rel="noopener">
               <span class="channel__icon channel__icon--tg">${telegramIcon()}</span>
               <span><span class="channel__label">Telegram</span><strong>@${esc(site.telegram)}</strong></span>
@@ -310,6 +314,7 @@ function footer() {
       <div class="footer__nav">
         <span class="footer__title">Контакти</span>
         <a href="tel:${site.phone}">${esc(site.phoneLabel)}</a>
+        <a href="tel:${site.phone2}">${esc(site.phone2Label)}</a>
         <a href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram @${esc(site.telegram)}</a>
         <span>${esc(site.workingHours)}</span>
       </div>
@@ -340,6 +345,7 @@ function storeSchema() {
     url: absoluteUrl('/'),
     image: unsplashUrl(site.defaultImage, 1200),
     telephone: site.phone,
+    contactPoint: [site.phone, site.phone2].map((telephone) => ({ '@type': 'ContactPoint', telephone, contactType: 'sales', areaServed: 'UA', availableLanguage: ['uk'] })),
     priceRange: site.priceRange,
     address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: site.region, addressCountry: site.country },
     areaServed: { '@type': 'Country', name: 'Україна' },
