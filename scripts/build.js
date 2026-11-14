@@ -18,7 +18,10 @@ async function writePage(urlPath, html) {
 
 async function assetVersion() {
   const hash = crypto.createHash('sha1');
-  for (const name of await fs.readdir(PUBLIC_DIR)) hash.update(await fs.readFile(path.join(PUBLIC_DIR, name)));
+  // Only top-level files (CSS, JS) are versioned; folders such as products/ hold images.
+  for (const entry of await fs.readdir(PUBLIC_DIR, { withFileTypes: true })) {
+    if (entry.isFile()) hash.update(await fs.readFile(path.join(PUBLIC_DIR, entry.name)));
+  }
   return hash.digest('hex').slice(0, 10);
 }
 

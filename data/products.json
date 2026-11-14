@@ -50,6 +50,7 @@
   },
   {
     "id": "deye-sun-6k-sg05lp1",
+    "image": "/products/deye-sun-6k-sg05lp1.webp",
     "slug": "deye-sun-6k-sg05lp1-eu",
     "category": "inverter",
     "tier": "recommended",
@@ -74,6 +75,7 @@
   },
   {
     "id": "solis-s6-eh1p6k-l-plus",
+    "image": "/products/solis-s6-eh1p6k-l-plus.webp",
     "slug": "solis-s6-eh1p6k-l-plus",
     "category": "inverter",
     "tier": "recommended",
@@ -97,6 +99,7 @@
   },
   {
     "id": "growatt-spm-6000tl-hu",
+    "image": "/products/growatt-spm-6000tl-hu.jpg",
     "slug": "growatt-spm-6000tl-hu",
     "category": "inverter",
     "tier": "recommended",
@@ -121,6 +124,7 @@
   },
   {
     "id": "deye-sun-5k-sg06lp1",
+    "image": "/products/deye-sun-5k-sg06lp1.webp",
     "slug": "deye-sun-5k-sg06lp1-eu-bm2",
     "category": "inverter",
     "tier": "recommended",
@@ -144,6 +148,7 @@
   },
   {
     "id": "felicity-ivgm8klp1g1",
+    "image": "/products/felicity-ivgm8klp1g1.webp",
     "slug": "felicity-ivgm8klp1g1",
     "category": "inverter",
     "tier": "recommended",
@@ -165,6 +170,7 @@
   },
   {
     "id": "powmr-6-5kw-48v",
+    "image": "/products/powmr-6-5kw-48v.jpg",
     "slug": "powmr-6-5kw-48v",
     "category": "inverter",
     "tier": "budget",
@@ -184,6 +190,7 @@
   },
   {
     "id": "stif-energy-h6500w-48v",
+    "image": "/products/stif-energy-h6500w-48v.jpg",
     "slug": "stif-energy-h6500w-48v",
     "category": "inverter",
     "tier": "budget",
@@ -207,6 +214,7 @@
   },
   {
     "id": "powerlux-pw-6-5kw-48v",
+    "image": "/products/powerlux-pw-6-5kw-48v.webp",
     "slug": "powerlux-pw-6-5kw-48v",
     "category": "inverter",
     "tier": "budget",
@@ -230,6 +238,7 @@
   },
   {
     "id": "must-pv19-6248-exp",
+    "image": "/products/must-pv19-6248-exp.webp",
     "slug": "must-pv19-6248-exp",
     "category": "inverter",
     "tier": "budget",
@@ -252,6 +261,7 @@
   },
   {
     "id": "felicity-ivem6048-ii",
+    "image": "/products/felicity-ivem6048-ii.webp",
     "slug": "felicity-ivem6048-ii",
     "category": "inverter",
     "tier": "budget",
@@ -274,6 +284,7 @@
   },
   {
     "id": "ecosolex-rs-r51100a",
+    "image": "/products/ecosolex-rs-r51100a.webp",
     "slug": "ecosolex-lv-rs-r51100a",
     "category": "battery",
     "brand": "Ecosolex",
@@ -290,6 +301,7 @@
   },
   {
     "id": "must-lp16-48100",
+    "image": "/products/must-lp16-48100.webp",
     "slug": "must-lp16-48100",
     "category": "battery",
     "brand": "MUST",
@@ -306,6 +318,7 @@
   },
   {
     "id": "deye-se-g5-1-pro-b",
+    "image": "/products/deye-se-g5-1-pro-b.png",
     "slug": "deye-se-g5-1-pro-b",
     "category": "battery",
     "brand": "Deye",
@@ -322,6 +335,7 @@
   },
   {
     "id": "deye-se-f5-pro-c",
+    "image": "/products/deye-se-f5-pro-c.png",
     "slug": "deye-se-f5-pro-c",
     "category": "battery",
     "brand": "Deye",
@@ -338,6 +352,7 @@
   },
   {
     "id": "growatt-hope-5-0lw-b1",
+    "image": "/products/growatt-hope-5-0lw-b1.webp",
     "slug": "growatt-hope-5-0lw-b1",
     "category": "battery",
     "brand": "Growatt",
@@ -355,6 +370,7 @@
   },
   {
     "id": "deye-sun-20k-sg05lp3",
+    "image": "/products/deye-sun-20k-sg05lp3.webp",
     "slug": "deye-sun-20k-sg05lp3-eu-sm2",
     "category": "lift",
     "brand": "Deye",
@@ -377,6 +393,7 @@
   },
   {
     "id": "felicity-ivgm20klp3g1",
+    "image": "/products/felicity-ivgm20klp3g1.jpg",
     "slug": "felicity-ivgm20klp3g1",
     "category": "lift",
     "brand": "Felicity",
@@ -399,6 +416,7 @@
   },
   {
     "id": "luxpower-trip2-lb-3p-20k",
+    "image": "/products/luxpower-trip2-lb-3p-20k.webp",
     "slug": "luxpower-trip2-lb-3p-20k",
     "category": "lift",
     "brand": "LuxPower",
@@ -422,6 +440,7 @@
   },
   {
     "id": "deye-sun-30k-sg02hp3",
+    "image": "/products/deye-sun-30k-sg02hp3.webp",
     "slug": "deye-sun-30k-sg02hp3-eu-bm3",
     "category": "lift",
     "brand": "Deye",
@@ -443,6 +462,7 @@
   },
   {
     "id": "felicity-ivgm30khp3g2",
+    "image": "/products/felicity-ivgm30khp3g2.webp",
     "slug": "felicity-ivgm30khp3g2",
     "category": "lift",
     "brand": "Felicity",
@@ -463,6 +483,7 @@
   },
   {
     "id": "growatt-mid-30ktl3-xh",
+    "image": "/products/growatt-mid-30ktl3-xh.webp",
     "slug": "growatt-mid-30ktl3-xh",
     "category": "lift",
     "brand": "Growatt",

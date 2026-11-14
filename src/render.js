@@ -149,11 +149,13 @@ function tierChip(product) {
 function productCard(product, index = 0) {
   const spec = headlineSpec(product);
   const url = productPath(product);
+  const hasPhoto = Boolean(product.image && isLocalImage(product.image));
+  const visualClass = hasPhoto ? 'product__visual--photo' : `product__visual--${product.category}`;
   return `
     <article class="product" data-category="${product.category}" data-tier="${product.tier || ''}" data-price="${product.price ?? ''}" data-order="${index}">
-      <a class="product__visual product__visual--${product.category}" href="${url}" tabindex="-1" aria-hidden="true">
+      <a class="product__visual ${visualClass}" href="${url}" tabindex="-1" aria-hidden="true">
         <span class="product__spec"><strong>${spec.value}</strong>${spec.unit}</span>
-        ${productIllustration(product)}
+        ${hasPhoto ? picture({ photoId: product.image, alt: product.name }) : productIllustration(product)}
       </a>
       <div class="product__body">
         <div class="product__brand">${esc(product.brand)} · ${CATEGORIES[product.category].label}</div>
@@ -382,7 +384,7 @@ function productSchema(product) {
     name: product.name,
     sku: product.id,
     description: productDescription(product),
-    image: [unsplashUrl(productPhotoId(product), 1200)],
+    image: [isLocalImage(productPhotoId(product)) ? absoluteUrl(productPhotoId(product)) : unsplashUrl(productPhotoId(product), 1200)],
     brand: { '@type': 'Brand', name: brandOf(product) },
     category: CATEGORIES[product.category].h1,
     ...(product.price === null ? {} : {
@@ -884,7 +886,7 @@ function productPage(product, products, projects, assetVersion) {
   const related = [...products.filter(sameGroup), ...products.filter((p) => p.category === product.category && p.id !== product.id && !sameGroup(p))].slice(0, 4);
   const spec = headlineSpec(product);
   const visual = product.image
-    ? `<div class="pdp__media pdp__media--photo">${picture({ photoId: product.image, alt: product.name, widths: [640, 1000, 1400], sizes: '(max-width: 900px) 100vw, 50vw', eager: true })}</div>`
+    ? `<div class="pdp__media ${isLocalImage(product.image) ? 'pdp__media--product' : 'pdp__media--photo'}">${picture({ photoId: product.image, alt: product.name, widths: [640, 1000, 1400], sizes: '(max-width: 900px) 100vw, 50vw', eager: true })}</div>`
     : `<div class="pdp__media pdp__media--${product.category}"><span class="product__spec product__spec--lg"><strong>${spec.value}</strong>${spec.unit}</span>${productIllustration(product)}</div>`;
   const consultText = `${product.name} — ${priceText(product)}`;
   const priceNote = product.price === null
