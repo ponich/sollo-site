@@ -287,7 +287,10 @@ function header() {
         <a href="${PROJECTS_PATH}">Наші роботи</a>
       </nav>
       <div class="topbar__contacts">
-        <a class="topbar__phone" href="tel:${site.phone}">${esc(site.phoneLabel)}</a>
+        <div class="topbar__phones">
+          <a class="topbar__phone" href="tel:${site.phone}">${esc(site.phoneLabel)}</a>
+          <a class="topbar__phone" href="tel:${site.phone2}">${esc(site.phone2Label)}</a>
+        </div>
         <a class="btn btn--small btn--tg" href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram</a>
       </div>
     </div>
