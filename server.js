@@ -5,6 +5,8 @@ const zlib = require('node:zlib');
 const { build, DIST_DIR } = require('./scripts/build');
 
 const PORT = Number(process.env.PORT) || 3000;
+const HOST = process.env.HOST || undefined;
+const TRUST_PROXY = process.env.TRUST_PROXY === '1';
 const DATA_DIR = path.join(__dirname, 'data');
 const LEADS_FILE = path.join(DATA_DIR, 'leads.json');
 const COMPRESSIBLE = new Set(['.html', '.css', '.js', '.json', '.svg', '.xml', '.txt']);
@@ -78,6 +80,14 @@ function validateLead(input) {
   return { lead, errors };
 }
 
+function clientIp(req) {
+  if (TRUST_PROXY) {
+    const forwarded = req.headers['cf-connecting-ip'] || String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
+    if (forwarded) return forwarded;
+  }
+  return req.socket.remoteAddress || 'unknown';
+}
+
 function isRateLimited(ip) {
   const hourAgo = Date.now() - 60 * 60 * 1000;
   const timestamps = (recentLeadsByIp.get(ip) || []).filter((t) => t > hourAgo);
@@ -135,7 +145,7 @@ async function notifyTelegram(lead) {
 }
 
 async function handleCreateLead(req, res) {
-  const ip = req.socket.remoteAddress || 'unknown';
+  const ip = clientIp(req);
   let input;
   try {
     input = JSON.parse(await readBody(req));
@@ -239,8 +249,8 @@ const server = http.createServer(async (req, res) => {
 });
 
 build().then((pageCount) => {
-  server.listen(PORT, () => {
-    console.log(`Нікітченко і партнери: http://localhost:${PORT} (${pageCount} сторінок)`);
+  server.listen(PORT, HOST, () => {
+    console.log(`Нікітченко і партнери: http://${HOST || 'localhost'}:${PORT} (${pageCount} сторінок)`);
     const telegramReady = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
     console.log(telegramReady ? 'Telegram: заявки надсилаються в чат' : 'Telegram: вимкнено, заявки лише у data/leads.json');
   });

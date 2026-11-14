@@ -15,6 +15,10 @@ install_units() {
   cp "$APP_DIR/deploy/sollo-site-update.service" /etc/systemd/system/
   cp "$APP_DIR/deploy/sollo-site-update.timer" /etc/systemd/system/
   systemctl daemon-reload
+  if [ -d /etc/caddy ] && ! cmp -s "$APP_DIR/deploy/Caddyfile" /etc/caddy/Caddyfile; then
+    cp "$APP_DIR/deploy/Caddyfile" /etc/caddy/Caddyfile
+    systemctl reload caddy
+  fi
 }
 
 release() {

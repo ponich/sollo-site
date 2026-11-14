@@ -1,0 +1,7 @@
+sollo.ponich.com {
+	reverse_proxy 127.0.0.1:3000
+}
+
+http://161.97.107.9 {
+	redir https://sollo.ponich.com{uri} permanent
+}
