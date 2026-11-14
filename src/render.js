@@ -770,7 +770,7 @@ function homePage(products, projects, assetVersion) {
     ${contactSection()}`;
 
   return layout({
-    title: 'Гібридні інвертори та акумулятори для дому | СвітлоДім',
+    title: `Гібридні інвертори та акумулятори для дому | ${site.name}`,
     description: 'Гібридні інвертори Deye, Growatt, Victron і LiFePO4 акумулятори для квартири, будинку та бізнесу. Калькулятор підбору, доставка по Україні, монтаж під ключ.',
     path: '/',
     body,

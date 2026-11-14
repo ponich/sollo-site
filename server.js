@@ -240,7 +240,7 @@ const server = http.createServer(async (req, res) => {
 
 build().then((pageCount) => {
   server.listen(PORT, () => {
-    console.log(`СвітлоДім: http://localhost:${PORT} (${pageCount} сторінок)`);
+    console.log(`Нікітченко і партнери: http://localhost:${PORT} (${pageCount} сторінок)`);
     const telegramReady = Boolean(process.env.TELEGRAM_BOT_TOKEN && process.env.TELEGRAM_CHAT_ID);
     console.log(telegramReady ? 'Telegram: заявки надсилаються в чат' : 'Telegram: вимкнено, заявки лише у data/leads.json');
   });

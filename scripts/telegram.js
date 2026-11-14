@@ -33,7 +33,7 @@ async function printChatIds() {
 
 async function sendTest() {
   if (!chatId) throw new Error('TELEGRAM_CHAT_ID не задано в .env');
-  await callTelegram('sendMessage', { chat_id: chatId, text: 'СвітлоДім: тестове повідомлення. Заявки з сайту приходитимуть сюди.' });
+  await callTelegram('sendMessage', { chat_id: chatId, text: 'Нікітченко і партнери: тестове повідомлення. Заявки з сайту приходитимуть сюди.' });
   console.log('Тестове повідомлення надіслано.');
 }
 

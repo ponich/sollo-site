@@ -338,10 +338,16 @@ section {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.05rem;
+  line-height: 1.15;
   color: #fff;
 }
 
+.logo span {
+  white-space: nowrap;
+}
+
 .logo svg {
+  flex-shrink: 0;
   width: 32px;
   height: 32px;
   color: var(--night-3);
@@ -354,6 +360,7 @@ section {
 }
 
 .nav a {
+  white-space: nowrap;
   text-decoration: none;
   font-size: 0.94rem;
   font-weight: 600;
@@ -2478,7 +2485,23 @@ input[type='range'] {
   height: 26px;
 }
 
-@media (max-width: 1180px) {
+/* The long company name leaves less room in the header on mid-size screens:
+   tighten the spacing and rely on the floating Telegram button. */
+@media (max-width: 1400px) {
+  .topbar__inner {
+    gap: 28px;
+  }
+
+  .nav {
+    gap: 20px;
+  }
+
+  .topbar__contacts .btn--tg {
+    display: none;
+  }
+}
+
+@media (max-width: 1240px) {
   .nav {
     display: none;
   }
@@ -2486,6 +2509,9 @@ input[type='range'] {
   .topbar__contacts {
     margin-left: auto;
   }
+}
+
+@media (max-width: 1180px) {
 
   .hero__grid,
   .lifts__grid,
@@ -2554,6 +2580,11 @@ input[type='range'] {
 
   .topbar__phone {
     font-size: 0.84rem;
+  }
+
+  .logo span {
+    white-space: normal;
+    font-size: 0.95rem;
   }
 
   .hero__actions .btn {
