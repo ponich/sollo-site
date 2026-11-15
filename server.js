@@ -23,6 +23,7 @@ const MIME_TYPES = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
+  '.mp4': 'video/mp4',
   '.ico': 'image/x-icon',
   '.xml': 'application/xml; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
@@ -190,6 +191,28 @@ function sendFile(req, res, status, filePath, content, cacheControl) {
     Vary: 'Accept-Encoding',
   };
   let body = content;
+  // Video needs byte ranges: iPhone Safari refuses to play an mp4 that can't be fetched in parts
+  if (ext === '.mp4' && status === 200) {
+    headers['Accept-Ranges'] = 'bytes';
+    const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+    if (range && (range[1] || range[2])) {
+      const size = content.length;
+      let start = range[1] ? Number(range[1]) : size - Number(range[2]);
+      let end = range[1] && range[2] ? Number(range[2]) : size - 1;
+      start = Math.max(0, start);
+      end = Math.min(end, size - 1);
+      if (start > end) {
+        res.writeHead(416, { 'Content-Range': `bytes */${size}` }).end();
+        return;
+      }
+      body = content.subarray(start, end + 1);
+      headers['Content-Range'] = `bytes ${start}-${end}/${size}`;
+      headers['Content-Length'] = body.length;
+      res.writeHead(206, headers);
+      res.end(req.method === 'HEAD' ? undefined : body);
+      return;
+    }
+  }
   if (COMPRESSIBLE.has(ext) && /\bgzip\b/.test(req.headers['accept-encoding'] || '')) {
     body = zlib.gzipSync(content);
     headers['Content-Encoding'] = 'gzip';

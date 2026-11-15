@@ -458,7 +458,34 @@ function initMenu() {
   document.addEventListener('click', (event) => { if (!topbar.contains(event.target)) setOpen(false); });
 }
 
+// Promo video: plays silently only while on screen (saves mobile data), sound on request
+function initPromoVideo() {
+  const video = $('.promo__video');
+  if (!video) return;
+  const sound = $('.promo__sound');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) video.controls = true;
+
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) video.play().catch(() => {});
+      else video.pause();
+    }, { threshold: 0.4 }).observe(video);
+  }
+
+  sound.addEventListener('click', () => {
+    video.muted = !video.muted;
+    if (!video.muted) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    }
+    sound.setAttribute('aria-pressed', String(!video.muted));
+    sound.setAttribute('aria-label', video.muted ? 'Увімкнути звук' : 'Вимкнути звук');
+  });
+}
+
 initMenu();
+initPromoVideo();
 initCalculator();
 initCatalogFilters();
 initProjectFilters();

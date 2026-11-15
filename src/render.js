@@ -558,6 +558,27 @@ function homePage(products, projects, assetVersion) {
       </div>
     </div>
 
+    <section class="promo" id="video">
+      <div class="container promo__inner">
+        <div class="promo__text">
+          <p class="kicker">Як це виглядає</p>
+          <h2>Світло вдома, навіть коли в усьому будинку темно</h2>
+          <p class="section-lead">10 секунд про те, як працює резервне живлення: інвертор і акумулятор тихо підхоплюють квартиру, а ви бачите заряд у застосунку на телефоні.</p>
+          <div class="promo__actions">
+            <a href="#calculator" class="btn btn--primary">Порахувати свою систему</a>
+            <a href="${SERVICES_PATH}" class="btn btn--outline">Наші послуги</a>
+          </div>
+        </div>
+        <div class="promo__media">
+          <video class="promo__video" src="/video/promo.mp4#t=0.1" muted loop playsinline preload="metadata" aria-label="Відео: як працює резервне живлення в квартирі під час відключення"></video>
+          <button type="button" class="promo__sound" aria-pressed="false" aria-label="Увімкнути звук">
+            <svg class="promo__sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg>
+            <svg class="promo__sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <section class="how" id="how">
       <div class="container how__grid">
         <div class="how__text">
