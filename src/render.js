@@ -44,6 +44,29 @@ function picture({ photoId, alt = '', widths = [640, 1024, 1600], sizes = '100vw
   return `<img ${attrs.join(' ')}>`;
 }
 
+const SERVICE_ICON = (path) => `<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+
+const SERVICES = [
+  {
+    title: 'Професійне встановлення',
+    text: 'Змонтуємо будь-яке ваше обладнання — куплене у нас чи деінде.',
+    points: ['Інвертори, акумулятори, сонячні панелі', 'Окрема резервна лінія і автомати захисту', 'Акуратний монтаж за 1–2 дні'],
+    icon: SERVICE_ICON('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>'),
+  },
+  {
+    title: 'Налаштування обладнання',
+    text: 'Налаштуємо систему, щоб вона працювала надійно і вигідно.',
+    points: ['Режими роботи і двозонний тариф', 'Підключення застосунку на телефоні', 'Перевірка вже встановленої системи'],
+    icon: SERVICE_ICON('<circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/>'),
+  },
+  {
+    title: 'Сервісне обслуговування',
+    text: 'Доглядаємо за системою після монтажу, щоб вона не підвела у відключення.',
+    points: ['Планові огляди і перевірка акумуляторів', 'Оновлення прошивки', 'Виїзд при несправності'],
+    icon: SERVICE_ICON('<path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/>'),
+  },
+];
+
 const KIT_MOUNTING_LABELS = {
   single: 'Монтажний набір: перемикач вводу, реле напруги, автомати, кабель',
   three: 'Трифазний монтажний набір: контактори, реле контролю фаз, індикатори, кабель',
@@ -688,6 +711,27 @@ function homePage(products, projects, assetVersion) {
           <a class="btn btn--outline" href="${categoryPath('battery')}">Усі акумулятори</a>
         </div>
         <p class="note">Ціни орієнтовні та залежать від курсу. Точну ціну і наявність підтвердить менеджер.</p>
+
+        <div class="services" id="service-list">
+          <div class="services__head">
+            <p class="kicker">Послуги</p>
+            <h2>Монтаж, налаштування і сервіс</h2>
+            <p>Встановимо не лише обладнання з нашого каталогу, а й те, що ви вже купили деінде.</p>
+          </div>
+          <div class="services__grid">
+            ${SERVICES.map((service) => `
+            <article class="service">
+              <span class="service__icon" aria-hidden="true">${service.icon}</span>
+              <h3>${service.title}</h3>
+              <p>${service.text}</p>
+              <ul>${service.points.map((point) => `<li>${point}</li>`).join('')}</ul>
+              <div class="service__footer">
+                <span class="price price--request">Ціна за запитом</span>
+                <a class="btn btn--primary btn--small" href="#contact" data-consult="Послуга: ${service.title}">Замовити</a>
+              </div>
+            </article>`).join('')}
+          </div>
+        </div>
       </div>
     </section>
 
