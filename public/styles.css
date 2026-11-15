@@ -3251,6 +3251,7 @@ input[type='range'] {
   color: var(--amber-deep);
 }
 
+.service h2,
 .service h3 {
   margin: 0 0 8px;
   font-size: 1.15rem;
@@ -3298,4 +3299,16 @@ input[type='range'] {
 
 .service__footer .btn {
   flex-shrink: 0;
+}
+
+/* Seven menu items: tighten the desktop menu on small laptops before the burger takes over */
+@media (min-width: 1021px) and (max-width: 1180px) {
+  .topbar .topbar__inner {
+    gap: 16px;
+  }
+
+  .topbar .nav {
+    gap: 11px;
+    font-size: 0.84rem;
+  }
 }

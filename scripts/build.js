@@ -2,7 +2,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require('node:crypto');
 const site = require('../src/site');
-const { prepareProjects, projectsListPage, projectPage, projectPath, PROJECTS_PATH, prepareCatalog, homePage, categoryPage, productPage, notFoundPage, categoryPath, productPath, absoluteUrl, CATEGORIES } = require('../src/render');
+const { servicesPage, SERVICES_PATH, prepareProjects, projectsListPage, projectPage, projectPath, PROJECTS_PATH, prepareCatalog, homePage, categoryPage, productPage, notFoundPage, categoryPath, productPath, absoluteUrl, CATEGORIES } = require('../src/render');
 
 const ROOT = path.join(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT, 'public');
@@ -46,6 +46,7 @@ async function build() {
   for (const category of Object.keys(CATEGORIES)) pages.push([categoryPath(category), categoryPage(category, products, version)]);
   for (const product of products) pages.push([productPath(product), productPage(product, products, projects, version)]);
   pages.push([PROJECTS_PATH, projectsListPage(projects, version)]);
+  pages.push([SERVICES_PATH, servicesPage(version)]);
   for (const project of projects) pages.push([projectPath(project), projectPage(project, projects, version)]);
 
   await Promise.all(pages.map(([urlPath, html]) => writePage(urlPath, html)));

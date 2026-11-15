@@ -14,6 +14,7 @@ const formatKwh = (value) => `${value.toLocaleString('uk-UA', { maximumFractionD
 
 const absoluteUrl = (path) => `${site.url}${path}`;
 const PROJECTS_PATH = '/nashi-roboty/';
+const SERVICES_PATH = '/posluhy/';
 const projectPath = (project) => `${PROJECTS_PATH}${project.slug}/`;
 const categoryPath = (category) => `/${CATEGORIES[category].slug}/`;
 const productPath = (product) => `${categoryPath(product.category)}${product.slug}/`;
@@ -309,6 +310,7 @@ function header() {
         <a href="${categoryPath('inverter')}">Інвертори</a>
         <a href="${categoryPath('battery')}">Акумулятори</a>
         <a href="${categoryPath('lift')}">Ліфти ОСББ</a>
+        <a href="${SERVICES_PATH}">Послуги</a>
         <a href="${PROJECTS_PATH}">Наші роботи</a>
       </nav>
       <div class="topbar__contacts">
@@ -339,6 +341,7 @@ function footer() {
         <a href="${categoryPath('inverter')}">Гібридні інвертори</a>
         <a href="${categoryPath('battery')}">Акумулятори LiFePO4</a>
         <a href="${categoryPath('lift')}">Резервне живлення ліфтів</a>
+        <a href="${SERVICES_PATH}">Монтаж і сервіс</a>
         <a href="${PROJECTS_PATH}">Наші роботи</a>
         <a href="/#calculator">Калькулятор підбору</a>
       </nav>
@@ -711,27 +714,6 @@ function homePage(products, projects, assetVersion) {
           <a class="btn btn--outline" href="${categoryPath('battery')}">Усі акумулятори</a>
         </div>
         <p class="note">Ціни орієнтовні та залежать від курсу. Точну ціну і наявність підтвердить менеджер.</p>
-
-        <div class="services" id="service-list">
-          <div class="services__head">
-            <p class="kicker">Послуги</p>
-            <h2>Монтаж, налаштування і сервіс</h2>
-            <p>Встановимо не лише обладнання з нашого каталогу, а й те, що ви вже купили деінде.</p>
-          </div>
-          <div class="services__grid">
-            ${SERVICES.map((service) => `
-            <article class="service">
-              <span class="service__icon" aria-hidden="true">${service.icon}</span>
-              <h3>${service.title}</h3>
-              <p>${service.text}</p>
-              <ul>${service.points.map((point) => `<li>${point}</li>`).join('')}</ul>
-              <div class="service__footer">
-                <span class="price price--request">Ціна за запитом</span>
-                <a class="btn btn--primary btn--small" href="#contact" data-consult="Послуга: ${service.title}">Замовити</a>
-              </div>
-            </article>`).join('')}
-          </div>
-        </div>
       </div>
     </section>
 
@@ -1100,6 +1082,44 @@ function projectsForProduct(product, projects) {
     </section>`;
 }
 
+function servicesPage(assetVersion) {
+  const crumbs = [{ name: 'Головна', path: '/' }, { name: 'Послуги', path: SERVICES_PATH }];
+  const body = `
+    <section class="page-head">
+      <div class="container">
+        ${breadcrumbs(crumbs)}
+        <h1>Наші послуги: монтаж, налаштування і сервіс</h1>
+        <p class="section-lead">Встановимо не лише обладнання з нашого каталогу, а й те, що ви вже купили деінде. Налаштуємо систему і будемо доглядати за нею після монтажу.</p>
+      </div>
+    </section>
+    <section class="catalog catalog--page">
+      <div class="container">
+        <div class="services__grid">
+          ${SERVICES.map((service) => `
+          <article class="service">
+            <span class="service__icon" aria-hidden="true">${service.icon}</span>
+            <h2>${service.title}</h2>
+            <p>${service.text}</p>
+            <ul>${service.points.map((point) => `<li>${point}</li>`).join('')}</ul>
+            <div class="service__footer">
+              <span class="price price--request">Ціна за запитом</span>
+              <a class="btn btn--primary btn--small" href="#contact" data-consult="Послуга: ${service.title}">Замовити</a>
+            </div>
+          </article>`).join('')}
+        </div>
+      </div>
+    </section>
+    ${contactSection('Потрібен монтаж, налаштування чи сервіс')}`;
+  return layout({
+    title: `Послуги: монтаж, налаштування і сервіс інверторів | ${site.name}`,
+    description: 'Професійне встановлення будь-якого вашого обладнання: інвертори, акумулятори, сонячні панелі. Налаштування системи і сервісне обслуговування.',
+    path: SERVICES_PATH,
+    body,
+    graph: [storeSchema(), breadcrumbSchema(crumbs), ...SERVICES.map((service) => ({ '@type': 'Service', name: service.title, description: service.text, provider: { '@id': storeId() }, areaServed: 'UA' }))],
+    assetVersion,
+  });
+}
+
 function projectsListPage(projects, assetVersion) {
   const crumbs = [{ name: 'Головна', path: '/' }, { name: 'Наші роботи', path: PROJECTS_PATH }];
   const types = Object.entries(PROJECT_TYPES).filter(([type]) => projects.some((p) => p.type === type));
@@ -1229,4 +1249,4 @@ function projectPage(project, projects, assetVersion) {
   });
 }
 
-module.exports = { prepareProjects, projectsListPage, projectPage, projectPath, PROJECTS_PATH, prepareCatalog, homePage, categoryPage, productPage, notFoundPage, categoryPath, productPath, absoluteUrl, CATEGORIES };
+module.exports = { servicesPage, SERVICES_PATH, prepareProjects, projectsListPage, projectPage, projectPath, PROJECTS_PATH, prepareCatalog, homePage, categoryPage, productPage, notFoundPage, categoryPath, productPath, absoluteUrl, CATEGORIES };
