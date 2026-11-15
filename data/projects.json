@@ -1,5 +1,22 @@
 [
   {
+    "id": "kvartyra-kyiv-deye-6k-lg-chem",
+    "slug": "kvartyra-kyiv-deye-6k-lg-chem",
+    "type": "apartment",
+    "title": "Квартира у Києві: інвертор Deye 6 кВт і акумулятор LG Chem",
+    "city": "Київ",
+    "date": "2026-11",
+    "summary": "Резервне живлення для квартири в Києві: гібридний інвертор Deye на 6 кВт і акумулятор LG Chem на 5 кВт·год поруч з електрощитком.",
+    "task": "Під час відключень за графіком квартира залишалась без світла. Потрібен тихий резерв без генератора, щоб працювали холодильник, роутер, освітлення і розетки.",
+    "solution": "Змонтували інвертор Deye 6 кВт на стіну поруч з електрощитком, акумулятор LG Chem 5 кВт·год поставили поруч. Акуратно підключили кабелі, вивели резервну лінію і налаштували інвертор.",
+    "result": "Коли зникає світло, квартира автоматично переходить на акумулятор. Перемикання непомітне: техніка не вимикається, інтернет працює.",
+    "installDays": 1,
+    "equipment": [{ "id": "deye-sun-6k-sg05lp1", "qty": 1 }, { "name": "Акумулятор LG Chem 5 кВт·год", "category": "battery", "capacityKwh": 5, "qty": 1 }],
+    "mountingKit": "single",
+    "cover": "/projects/kvartyra-kyiv-deye-6k-lg-chem-1.jpg",
+    "photos": ["/projects/kvartyra-kyiv-deye-6k-lg-chem-1.jpg", "/projects/kvartyra-kyiv-deye-6k-lg-chem-2.jpg"]
+  },
+  {
     "id": "draft-apartment-kyiv",
     "slug": "kvartyra-kyiv-deye-6k",
     "draft": true,

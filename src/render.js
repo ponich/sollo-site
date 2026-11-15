@@ -1012,6 +1012,8 @@ function prepareProjects(rawProjects, products) {
     .filter((project) => site.showDrafts || !project.draft)
     .map((project) => {
       const equipment = project.equipment.map((item) => {
+        // Equipment we don't sell (e.g. the client's own battery) is described inline instead of by catalog id
+        if (!item.id) return { product: { name: item.name, category: item.category, powerKw: item.powerKw || 0, capacityKwh: item.capacityKwh || 0, price: null, custom: true }, qty: item.qty || 1 };
         const product = byId.get(item.id);
         if (!product) throw new Error(`Project ${project.id}: unknown product ${item.id}`);
         return { product, qty: item.qty };
@@ -1167,7 +1169,7 @@ function projectSchema(project) {
     publisher: { '@id': storeId() },
     mainEntityOfPage: absoluteUrl(projectPath(project)),
     contentLocation: { '@type': 'Place', name: project.city },
-    about: project.equipment.map((item) => ({ '@type': 'Product', name: item.product.name, url: absoluteUrl(productPath(item.product)) })),
+    about: project.equipment.map((item) => (item.product.custom ? { '@type': 'Product', name: item.product.name } : { '@type': 'Product', name: item.product.name, url: absoluteUrl(productPath(item.product)) })),
   };
 }
 
@@ -1178,8 +1180,10 @@ function projectPage(project, projects, assetVersion) {
   const consultText = `Хочу так само, як у проєкті «${project.title}»`;
   const equipmentRows = project.equipment.map((item) => `
     <li>
-      <a href="${productPath(item.product)}">${item.qty > 1 ? `${item.qty} × ` : ''}${esc(item.product.name)}</a>
-      <span>${item.product.price === null ? 'ціна за запитом' : formatPrice(item.product.price * item.qty)}</span>
+      ${item.product.custom
+        ? `<span>${item.qty > 1 ? `${item.qty} × ` : ''}${esc(item.product.name)}</span>`
+        : `<a href="${productPath(item.product)}">${item.qty > 1 ? `${item.qty} × ` : ''}${esc(item.product.name)}</a>`}
+      <span>${item.product.custom ? '' : item.product.price === null ? 'ціна за запитом' : formatPrice(item.product.price * item.qty)}</span>
     </li>`).join('');
   const body = `
     ${project.draft ? '<div class="draft-banner"><div class="container">Чернетка: приклад оформлення. Замініть на реальний об\'єкт у data/projects.json. На сайті з доменом чернетки не публікуються.</div></div>' : ''}
@@ -1199,7 +1203,7 @@ function projectPage(project, projects, assetVersion) {
             <div><dt>Мережа</dt><dd>${project.mountingKit === 'three' ? '3 фази' : '1 фаза'}</dd></div>
           </dl>
         </div>
-        <div class="case__cover">${picture({ photoId: project.cover, alt: project.title, widths: [800, 1400, 2000], sizes: '100vw', eager: true })}</div>
+        <div class="case__cover${isLocalImage(project.cover) ? ' case__cover--photo' : ''}"${isLocalImage(project.cover) ? ` style="--cover: url('${project.cover}')"` : ''}>${picture({ photoId: project.cover, alt: project.title, widths: [800, 1400, 2000], sizes: '100vw', eager: true })}</div>
         <div class="case__body">
           <div class="case__story">
             <h2>Задача</h2>
