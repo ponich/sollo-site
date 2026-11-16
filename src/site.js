@@ -22,8 +22,8 @@ module.exports = {
   country: 'UA',
   priceRange: '₴₴',
   pricing: {
-    mountingKit: { single: 10000, three: 63000 },
-    installation: 20000,
+    mountingKit: { single: 5000, three: 63000 },
+    installation: 10000,
   },
   minHomeInverterKw: 6,
   defaultImage: 'photo-1780445392417-68b9dccc45f2',

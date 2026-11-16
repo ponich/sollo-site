@@ -51,7 +51,8 @@ const SERVICES = [
   {
     title: 'Професійне встановлення',
     text: 'Змонтуємо будь-яке ваше обладнання — куплене у нас чи деінде.',
-    points: ['Інвертори, акумулятори, сонячні панелі', 'Окрема резервна лінія і автомати захисту', 'Акуратний монтаж за 1–2 дні'],
+    points: ['Інвертори, акумулятори, сонячні панелі', 'Окрема резервна лінія і автомати захисту', 'Акуратний монтаж за 1–2 дні', `Монтажний набір — від ${formatPrice(site.pricing.mountingKit.single)}`],
+    priceFrom: site.pricing.installation,
     icon: SERVICE_ICON('<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>'),
   },
   {
@@ -926,7 +927,7 @@ function kitComposition(kit) {
   const lines = kit.parts.map((part) => `<li><a href="${part.path}">${part.qty > 1 ? `${part.qty} × ` : ''}${esc(part.name)}</a></li>`);
   lines.push(`<li>${KIT_MOUNTING_LABELS[kit.mountingKit]} — ${formatPrice(kit.mountingKitPrice)}</li>`);
   return `<h2>Склад комплекту</h2><ul class="checklist checklist--dark">${lines.join('')}</ul>
-    <p class="pdp__aside-note">Монтаж і налаштування — ${formatPrice(site.pricing.installation)} для звичайної квартири${kit.phases === 3 ? ', для трифазних систем після огляду' : ''}.</p>`;
+    <p class="pdp__aside-note">Монтаж і налаштування — від ${formatPrice(site.pricing.installation)} для звичайної квартири${kit.phases === 3 ? ', для трифазних систем після огляду' : ''}.</p>`;
 }
 
 function productPage(product, products, projects, assetVersion) {
@@ -1125,7 +1126,7 @@ function servicesPage(assetVersion) {
             <p>${service.text}</p>
             <ul>${service.points.map((point) => `<li>${point}</li>`).join('')}</ul>
             <div class="service__footer">
-              <span class="price price--request">Ціна за запитом</span>
+              ${service.priceFrom ? `<span class="price"><small>від</small> ${formatPrice(service.priceFrom)}</span>` : '<span class="price price--request">Ціна за запитом</span>'}
               <a class="btn btn--primary btn--small" href="#contact" data-consult="Послуга: ${service.title}">Замовити</a>
             </div>
           </article>`).join('')}
