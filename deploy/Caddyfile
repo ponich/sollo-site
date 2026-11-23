@@ -1,7 +1,11 @@
-sollo.ponich.com {
+svitlo-on.com {
 	reverse_proxy 127.0.0.1:3000
 }
 
+www.svitlo-on.com, sollo.ponich.com {
+	redir https://svitlo-on.com{uri} permanent
+}
+
 http://161.97.107.9 {
-	redir https://sollo.ponich.com{uri} permanent
+	redir https://svitlo-on.com{uri} permanent
 }

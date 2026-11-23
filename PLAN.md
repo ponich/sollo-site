@@ -62,9 +62,9 @@ npm start
 
 ## Сервер і деплой
 
-Сайт працює на Contabo (Ubuntu 26.04, 161.97.107.9) за адресою https://sollo.ponich.com.
+Сайт працює на Contabo (Ubuntu 26.04, 161.97.107.9) за адресою https://svitlo-on.com.
 
-Ланцюжок: відвідувач → Cloudflare (DNS з проксі, HTTPS для відвідувачів) → Caddy на сервері (порти 80/443, сертифікат Let's Encrypt, поновлюється автоматично) → сайт на `127.0.0.1:3000`. Запити на IP-адресу і на `http://` переадресовуються на `https://sollo.ponich.com` зі збереженням шляху.
+Ланцюжок: відвідувач → Cloudflare (DNS з проксі, HTTPS для відвідувачів) → Caddy на сервері (порти 80/443, сертифікат Let's Encrypt, поновлюється автоматично) → сайт на `127.0.0.1:3000`. Запити на IP-адресу і на `http://` переадресовуються на `https://svitlo-on.com` зі збереженням шляху. Так само переадресовуються `www.svitlo-on.com` і старий домен `sollo.ponich.com`.
 
 | Що | Де |
 |---|---|
@@ -73,7 +73,7 @@ npm start
 | Служба сайту | `sollo-site` (`deploy/sollo-site.service`), Node 22, `127.0.0.1:3000`, автозапуск після перезавантаження |
 | HTTPS | Caddy, конфіг `deploy/Caddyfile` → `/etc/caddy/Caddyfile`; при деплої оновлюється і перезавантажується, якщо змінився |
 | Автооновлення | таймер `sollo-site-update.timer` щохвилини запускає `deploy/update.sh` |
-| Налаштування | `/root/apps/sollo-site/.env`: `PORT=3000`, `HOST=127.0.0.1`, `TRUST_PROXY=1`, `SITE_URL=https://sollo.ponich.com`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| Налаштування | `/root/apps/sollo-site/.env`: `PORT=3000`, `HOST=127.0.0.1`, `TRUST_PROXY=1`, `SITE_URL=https://svitlo-on.com`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
 | Заявки | `/root/apps/sollo-site/data/leads.json` |
 | Логи сайту | `journalctl -u sollo-site -f` |
 | Логи деплою | `journalctl -u sollo-site-update` |
