@@ -3335,3 +3335,391 @@ input[type='range'] {
   object-fit: contain;
 }
 
+
+/* ==========================================================================
+   Light theme. The site used to be dark (night photos, black header, hero and
+   footer). These sections now sit on warm paper and white. Inside them the
+   "night" tokens are remapped to light ones, then the hard-coded light text
+   colours are turned dark. Small accents (calculator result, featured kit,
+   active tabs) stay dark on purpose.
+   ========================================================================== */
+.topbar,
+.hero,
+.brands,
+.diagram,
+.install,
+.contact,
+.footer {
+  --night: #fffdf8;
+  --night-2: #f6f1e7;
+  --night-3: #ece4d4;
+  --light: #1f1c18;
+  --light-soft: #4a443c;
+  --night-line: rgba(31, 28, 24, 0.1);
+  --green-light: #2f9e4f;
+}
+
+/* Text on the yellow button and icon circles stays dark everywhere */
+.btn--primary,
+.channel__icon {
+  color: #1f1c18;
+}
+
+/* Header */
+.topbar {
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 1px 0 rgba(31, 28, 24, 0.04), 0 8px 24px rgba(31, 28, 24, 0.04);
+}
+
+.logo,
+.footer .logo {
+  color: var(--ink);
+}
+
+.logo svg {
+  color: var(--ink);
+}
+
+.nav a:hover {
+  color: var(--ink);
+}
+
+.topbar__phone:hover {
+  color: var(--amber-deep);
+}
+
+.menu-toggle span {
+  background: var(--ink);
+}
+
+@media (max-width: 1020px) {
+  .topbar.is-open .nav {
+    background: #fffdf8;
+    box-shadow: 0 18px 30px rgba(31, 28, 24, 0.12);
+  }
+}
+
+/* First screen: text on warm paper, bright photo card on the right with the charge card over its corner */
+.hero {
+  background: var(--paper);
+}
+
+.hero::before {
+  background: radial-gradient(45% 60% at 80% 35%, rgba(242, 169, 59, 0.16), transparent 70%);
+}
+
+.hero__visual {
+  position: relative;
+  padding: 0 0 40px 70px;
+}
+
+.hero__photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3.6;
+  object-fit: cover;
+  object-position: 12% 50%;
+  border-radius: 28px;
+  box-shadow: 0 30px 70px rgba(31, 28, 24, 0.18);
+}
+
+.hero__visual .status-card {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(320px, 70%);
+  padding: 20px;
+}
+
+.hero__visual .status-card__loads li:nth-child(n + 4) {
+  display: none;
+}
+
+.hero__visual .status-card__level strong {
+  font-size: 2.2rem;
+}
+
+.hero h1 {
+  color: var(--ink);
+}
+
+.eyebrow {
+  color: var(--amber-deep);
+  background: rgba(255, 253, 248, 0.8);
+}
+
+.hero .btn--ghost {
+  color: var(--ink);
+  border-color: rgba(31, 28, 24, 0.2);
+  background: rgba(255, 253, 248, 0.8);
+}
+
+.hero .btn--ghost:hover {
+  border-color: var(--ink);
+}
+
+.status-card {
+  background: rgba(255, 253, 248, 0.94);
+  border-color: rgba(31, 28, 24, 0.08);
+  box-shadow: 0 30px 70px rgba(31, 28, 24, 0.18);
+}
+
+.status-card__battery {
+  background: var(--paper);
+}
+
+.status-card__badge {
+  color: var(--red);
+  background: rgba(180, 67, 47, 0.1);
+}
+
+.status-card__time,
+.status-card__level span,
+.status-card__eta,
+.status-card__loads li span:last-child,
+.hero__facts span {
+  color: var(--muted);
+}
+
+.status-card__level strong,
+.status-card__eta strong,
+.hero__facts strong {
+  color: var(--ink);
+}
+
+.status-card__foot {
+  color: var(--amber-deep);
+}
+
+/* Brands strip */
+.brands {
+  color: var(--ink-soft);
+}
+
+.brands__inner .brands__label {
+  color: var(--muted);
+}
+
+/* How it works diagram on a white card */
+.diagram {
+  background: #fffdf8;
+  border: 1px solid var(--line);
+}
+
+.node rect {
+  fill: #f6f1e7;
+  stroke: rgba(31, 28, 24, 0.12);
+}
+
+.node--core rect {
+  fill: var(--amber);
+}
+
+.node--core text,
+.node__bolt {
+  fill: #1f1c18;
+}
+
+.wire--sun {
+  stroke: #e9a92c;
+}
+
+.node__cell {
+  --cell-empty: rgba(31, 28, 24, 0.1);
+}
+
+/* Installation */
+.install {
+  background: var(--paper-2);
+}
+
+.install h2,
+.timeline strong,
+.perk h3 {
+  color: var(--ink);
+}
+
+.install__photo figcaption {
+  background: rgba(255, 253, 248, 0.9);
+  color: var(--ink-soft);
+}
+
+.timeline__day,
+.perk svg {
+  color: var(--amber-deep);
+}
+
+.perk {
+  background: #fffdf8;
+}
+
+.perk p {
+  color: var(--muted);
+}
+
+/* The photo card keeps a dark fade so its white text stays readable */
+.perk--photo h3 {
+  color: #fff;
+}
+
+.perk--photo p {
+  color: rgba(243, 238, 228, 0.8);
+}
+
+/* Contact: bright family photo under a light veil */
+.contact {
+  background: var(--paper);
+}
+
+.contact__bg {
+  opacity: 1;
+}
+
+.contact::before {
+  background: linear-gradient(90deg, rgba(244, 239, 230, 0.97) 35%, rgba(244, 239, 230, 0.8));
+}
+
+.contact h2 {
+  color: var(--ink);
+}
+
+.channel {
+  background: #fffdf8;
+}
+
+.channel__label,
+.contact__hours {
+  color: var(--muted);
+}
+
+.form {
+  box-shadow: 0 30px 70px rgba(31, 28, 24, 0.14);
+}
+
+/* Footer */
+.footer {
+  background: var(--paper-2);
+  color: var(--ink-soft);
+}
+
+.footer__nav a:hover {
+  color: var(--ink);
+}
+
+.footer__title {
+  color: var(--muted);
+}
+
+@media (max-width: 1180px) {
+  .hero__visual {
+    padding: 0;
+    max-width: 640px;
+  }
+
+  .hero__visual .status-card {
+    position: relative;
+    width: auto;
+    margin: -60px 16px 0;
+  }
+}
+
+@media (min-width: 1181px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* Light sections: the orange label needs the deeper shade to stay readable on paper */
+.kicker--light {
+  color: var(--amber-deep);
+}
+
+/* The text column of the light first screen is narrower, so the headline is a touch smaller */
+.hero h1 {
+  font-size: clamp(2.1rem, 3.4vw, 3.4rem);
+}
+
+/* First screen art: our own glowing light bulb instead of a stock photo */
+.hero__art {
+  position: relative;
+  aspect-ratio: 4 / 3.6;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 60% at 50% 42%, #fff8e1 0%, #ffecb8 45%, #fbd88a 100%);
+  box-shadow: 0 30px 70px rgba(217, 138, 23, 0.22), inset 0 0 0 1px rgba(217, 138, 23, 0.12);
+}
+
+.hero__art svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__art-halo {
+  transform-origin: 200px 150px;
+  animation: bulb-glow 3.2s ease-in-out infinite;
+}
+
+.hero__art-rays line {
+  stroke: #f2a93b;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.hero__art-rays {
+  transform-origin: 200px 150px;
+  animation: bulb-rays 3.2s ease-in-out infinite;
+}
+
+.hero__art-glass {
+  stroke: #e9a92c;
+  stroke-width: 3;
+  filter: drop-shadow(0 0 22px rgba(255, 200, 80, 0.9));
+}
+
+.hero__art-filament {
+  fill: none;
+  stroke: #d98a17;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hero__art-base rect,
+.hero__art-base path {
+  fill: #6b6457;
+}
+
+.hero__art-base rect:nth-child(2) {
+  fill: #857d6f;
+}
+
+@keyframes bulb-glow {
+  0%, 100% { opacity: 0.85; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+@keyframes bulb-rays {
+  0%, 100% { opacity: 0.55; transform: scale(0.97); }
+  50% { opacity: 1; transform: scale(1.03); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__art-halo,
+  .hero__art-rays {
+    animation: none;
+  }
+}
+
+/* Bulb sits to the right on wide screens (the charge card covers the left), centred on phones */
+.hero__art-scene {
+  transform: translate(95px, 30px) scale(0.78);
+}
+
+@media (max-width: 1180px) {
+  .hero__art-scene {
+    transform: translate(44px, 25px) scale(0.78);
+  }
+}

@@ -226,7 +226,7 @@ function kitCard(kit, featured) {
 function contactSection(contextText = '') {
   return `
     <section class="contact" id="contact">
-      ${picture({ photoId: 'photo-1575060537120-ac5e96e1a16f', className: 'contact__bg', widths: [800, 1600, 2200] })}
+      ${picture({ photoId: 'photo-1759743918954-f373b0d8a891', className: 'contact__bg', widths: [800, 1600, 2200] })}
       <div class="container contact__grid">
         <div class="contact__info">
           <p class="kicker kicker--light">Контакти</p>
@@ -508,7 +508,6 @@ function homePage(products, projects, assetVersion) {
   const lifts = products.filter((p) => p.category === 'lift');
   const body = `
     <section class="hero">
-      ${picture({ photoId: site.heroImage, className: 'hero__bg', widths: [800, 1400, 2200], eager: true })}
       <div class="container hero__grid">
         <div class="hero__content">
           <p class="eyebrow"><span class="pulse"></span>Графіки відключень — не ваша проблема</p>
@@ -519,6 +518,36 @@ function homePage(products, projects, assetVersion) {
             <a href="${categoryPath('kit')}" class="btn btn--ghost btn--lg">Готові комплекти</a>
           </div>
         </div>
+        <div class="hero__visual">
+          <div class="hero__art" role="img" aria-label="Лампочка світиться: світло увімкнене">
+            <svg viewBox="0 0 400 360" aria-hidden="true">
+              <defs>
+                <radialGradient id="bulb-glass" cx="45%" cy="38%" r="65%">
+                  <stop offset="0" stop-color="#fffdf2"/>
+                  <stop offset="0.55" stop-color="#ffe9a8"/>
+                  <stop offset="1" stop-color="#f7c252"/>
+                </radialGradient>
+                <radialGradient id="bulb-halo" cx="50%" cy="50%" r="50%">
+                  <stop offset="0" stop-color="#fff3c4" stop-opacity="0.95"/>
+                  <stop offset="0.6" stop-color="#ffd978" stop-opacity="0.35"/>
+                  <stop offset="1" stop-color="#ffd978" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <g class="hero__art-scene">
+              <circle class="hero__art-halo" cx="200" cy="150" r="170" fill="url(#bulb-halo)"/>
+              <g class="hero__art-rays"><line x1="200.0" y1="38.0" x2="200.0" y2="0.0"/><line x1="256.0" y1="53.0" x2="268.0" y2="32.2"/><line x1="297.0" y1="94.0" x2="329.9" y2="75.0"/><line x1="312.0" y1="150.0" x2="336.0" y2="150.0"/><line x1="297.0" y1="206.0" x2="329.9" y2="225.0"/><line x1="103.0" y1="206.0" x2="70.1" y2="225.0"/><line x1="88.0" y1="150.0" x2="64.0" y2="150.0"/><line x1="103.0" y1="94.0" x2="70.1" y2="75.0"/><line x1="144.0" y1="53.0" x2="132.0" y2="32.2"/></g>
+              <path class="hero__art-glass" d="M164 226c0-24-44-40-44-84a80 80 0 1 1 160 0c0 44-44 60-44 84z" fill="url(#bulb-glass)"/>
+              <path class="hero__art-filament" d="M182 226v-46l9-14 9 14 9-14 9 14v46"/>
+              <ellipse cx="172" cy="112" rx="14" ry="24" fill="#fff" opacity="0.7" transform="rotate(28 172 112)"/>
+              <g class="hero__art-base">
+                <rect x="162" y="228" width="76" height="14" rx="5"/>
+                <rect x="164" y="244" width="72" height="12" rx="5"/>
+                <rect x="167" y="258" width="66" height="12" rx="5"/>
+                <path d="M180 272h40l-8 16h-24z"/>
+              </g>
+              </g>
+            </svg>
+          </div>
         <aside class="status-card" aria-label="Приклад роботи системи під час відключення">
           <div class="status-card__head">
             <span class="status-card__badge"><span class="dot"></span>Світла немає</span>
@@ -541,6 +570,7 @@ function homePage(products, projects, assetVersion) {
             Перемкнулось за 8 мс. Ніхто не помітив.
           </div>
         </aside>
+        </div>
       </div>
       <div class="container">
         <ul class="hero__facts">
@@ -721,7 +751,7 @@ function homePage(products, projects, assetVersion) {
     <section class="lifts" id="lifts">
       <div class="container lifts__grid">
         <figure class="lifts__photo">
-          ${picture({ photoId: CATEGORIES.lift.image, alt: 'Старий ліфт у під\'їзді багатоквартирного будинку', widths: [480, 800, 1200], sizes: '(max-width: 1180px) 100vw, 40vw' })}
+          ${picture({ photoId: CATEGORIES.lift.image, alt: 'Світлий ліфтовий хол багатоквартирного будинку', widths: [480, 800, 1200], sizes: '(max-width: 1180px) 100vw, 40vw' })}
         </figure>
         <div class="lifts__text">
           <p class="kicker">Для ОСББ</p>
@@ -753,7 +783,7 @@ function homePage(products, projects, assetVersion) {
       <div class="container">
         <div class="install__grid">
           <figure class="install__photo">
-            ${picture({ photoId: 'photo-1780445392417-68b9dccc45f2', alt: 'Змонтований на стіні гібридний інвертор, акумулятори і щиток захисту', widths: [640, 1000, 1400], sizes: '(max-width: 1020px) 100vw, 50vw' })}
+            ${picture({ photoId: '/projects/kvartyra-kyiv-deye-6k-lg-chem-1.jpg', alt: 'Наш монтаж у квартирі в Києві: інвертор Deye і акумулятор біля електрощитка', widths: [640, 1000, 1400], sizes: '(max-width: 1020px) 100vw, 50vw' })}
             <figcaption>Акуратний монтаж: інвертор, акумулятори і автомати захисту на одній стіні.</figcaption>
           </figure>
           <div class="install__text">
@@ -784,7 +814,7 @@ function homePage(products, projects, assetVersion) {
             <p>Можлива оплата частинами через банк. Умови уточнюйте у менеджера.</p>
           </article>
           <article class="perk perk--photo">
-            ${picture({ photoId: 'photo-1624397640148-949b1732bb0a', alt: 'Монтажник встановлює сонячну панель на даху', widths: [480, 800], sizes: '(max-width: 760px) 100vw, 25vw' })}
+            ${picture({ photoId: 'photo-1655300256335-beef51a914fe', alt: 'Будинок із сонячними панелями на даху', widths: [480, 800], sizes: '(max-width: 760px) 100vw, 25vw' })}
             <div><h3>Сонячні панелі</h3><p>Розширимо систему до СЕС, коли будете готові.</p></div>
           </article>
         </div>

@@ -26,6 +26,6 @@ module.exports = {
     installation: 10000,
   },
   minHomeInverterKw: 6,
-  defaultImage: 'photo-1780445392417-68b9dccc45f2',
-  heroImage: 'photo-1719935114301-eac84a6591cf',
+  defaultImage: 'photo-1704040686510-b747ff423ebb',
+  heroImage: 'photo-1704040686510-b747ff423ebb',
 };
