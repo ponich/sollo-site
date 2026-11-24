@@ -3906,3 +3906,16 @@ input[type='range'] {
     bottom: 12px;
   }
 }
+
+/* New «Світло ON» mark (battery with a bolt inside a pulse ring) is more detailed than the old bolt, so it gets a little more room */
+.logo svg {
+  width: 38px;
+  height: 38px;
+}
+
+@media (max-width: 400px) {
+  .logo svg {
+    width: 34px;
+    height: 34px;
+  }
+}
