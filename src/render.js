@@ -1,3 +1,6 @@
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 const site = require('./site');
 const { CATEGORIES, FAQ } = require('./content');
 
@@ -24,11 +27,28 @@ const brandOf = (product) => product.brand || site.name;
 const stockLabel = (product) => (product.stock === 'in_stock' ? 'В наявності' : 'Під замовлення');
 
 const isLocalImage = (photoId) => photoId.startsWith('/');
-const imageUrl = (photoId, width) => (isLocalImage(photoId) ? photoId : unsplashUrl(photoId, width));
+
+// Our own pictures get ?v=<hash of the file> in their address. Cloudflare tells browsers to keep
+// pictures for hours, so without this a replaced picture kept showing the old version.
+const PUBLIC_DIR = path.join(__dirname, '..', 'public');
+const versionCache = new Map();
+function versioned(localPath) {
+  if (!versionCache.has(localPath)) {
+    let version = '';
+    try {
+      version = crypto.createHash('md5').update(fs.readFileSync(path.join(PUBLIC_DIR, localPath))).digest('hex').slice(0, 8);
+    } catch {
+      // missing file: leave the address as it is
+    }
+    versionCache.set(localPath, version ? `${localPath}?v=${version}` : localPath);
+  }
+  return versionCache.get(localPath);
+}
+const imageUrl = (photoId, width) => (isLocalImage(photoId) ? versioned(photoId) : unsplashUrl(photoId, width));
 
 function picture({ photoId, alt = '', widths = [640, 1024, 1600], sizes = '100vw', className = '', eager = false, width, height }) {
   if (isLocalImage(photoId)) {
-    return `<img${className ? ` class="${className}"` : ''} src="${photoId}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+    return `<img${className ? ` class="${className}"` : ''} src="${versioned(photoId)}" alt="${esc(alt)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
   }
   const srcset = widths.map((w) => `${unsplashUrl(photoId, w)} ${w}w`).join(', ');
   const attrs = [
@@ -1277,7 +1297,7 @@ function projectPage(project, projects, assetVersion) {
             <div><dt>Мережа</dt><dd>${project.mountingKit === 'three' ? '3 фази' : '1 фаза'}</dd></div>
           </dl>
         </div>
-        <div class="case__cover${isLocalImage(project.cover) ? ' case__cover--photo' : ''}"${isLocalImage(project.cover) ? ` style="--cover: url('${project.cover}')"` : ''}>${picture({ photoId: project.cover, alt: project.title, widths: [800, 1400, 2000], sizes: '100vw', eager: true })}</div>
+        <div class="case__cover${isLocalImage(project.cover) ? ' case__cover--photo' : ''}"${isLocalImage(project.cover) ? ` style="--cover: url('${versioned(project.cover)}')"` : ''}>${picture({ photoId: project.cover, alt: project.title, widths: [800, 1400, 2000], sizes: '100vw', eager: true })}</div>
         <div class="case__body">
           <div class="case__story">
             <h2>Задача</h2>
