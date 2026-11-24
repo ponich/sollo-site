@@ -33,16 +33,16 @@
     "components": [{ "id": "deye-sun-6k-sg05lp1", "qty": 1 }, { "id": "ecosolex-rs-r51100a", "qty": 2 }],
     "mountingKit": "single",
     "stock": "on_order",
-    "features": ["10,24 кВт·год тримають будинок цілу ніч", "Підключення генератора для довгих відключень", "Моніторинг зі смартфона"]
+    "features": ["Для будинку до 100 м²: 10,24 кВт·год тримають його цілу ніч", "Підключення генератора для довгих відключень", "Моніторинг зі смартфона"]
   },
   {
     "id": "kit-lift",
     "slug": "komplekt-lift-osbb",
     "category": "kit",
     "name": "Комплект «Ліфт ОСББ»",
-    "tagline": "Резервне живлення ліфта з інверторним двигуном, 3 фази",
+    "tagline": "20 кВт і 32 кВт·год (2 × 16): резервне живлення ліфта з інверторним двигуном, 3 фази",
     "image": "photo-1758193017781-e3aee6c3e359",
-    "components": [{ "id": "deye-sun-20k-sg05lp3", "qty": 1 }, { "id": "ecosolex-rs-r51100a", "qty": 4 }],
+    "components": [{ "id": "deye-sun-20k-sg05lp3", "qty": 1 }, { "id": "deye-se-f16-l", "qty": 2 }],
     "mountingKit": "three",
     "stock": "on_order",
     "priceFrom": true,
@@ -367,6 +367,22 @@
     "warrantyYears": null,
     "features": ["Понад 6 000 циклів", "Глибина розряду 92%", "Паралельно до 48 батарей (240 кВт·год)"],
     "sourceUrl": "https://www.nkon.nl/ru/thuisbatterij/merken/hope-5-0lw-b1-51-2v-5-12kwh.html"
+  },
+  {
+    "id": "deye-se-f16-l",
+    "slug": "deye-se-f16-l",
+    "category": "battery",
+    "brand": "Deye",
+    "name": "Deye SE-F16-L",
+    "tagline": "16 кВт·год в одному корпусі, для будинків і ліфтів",
+    "capacityKwh": 16,
+    "batteryVoltage": 48,
+    "cycles": 6000,
+    "price": 89166,
+    "stock": "on_order",
+    "warrantyYears": 5,
+    "features": ["LiFePO4 51,2 В 314 А·год", "Понад 6 000 циклів", "Паралельне підключення для більшої ємності"],
+    "sourceUrl": "https://220volt.com.ua/ua/akkumulyatornaya_batareya_deye_se_f16_l_lifepo4_512v_314ah_160_kwh/"
   },
   {
     "id": "deye-sun-20k-sg05lp3",

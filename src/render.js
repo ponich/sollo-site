@@ -773,6 +773,7 @@ function homePage(products, projects, assetVersion) {
           <p class="section-lead">Інвертор, акумулятори і захист, які ми вже багато разів ставили разом. Найшвидший шлях до світла без вивчення характеристик.</p>
         </div>
         <div class="kits__grid">${kits.map((kit) => kitCard(kit, kit.id === 'kit-house')).join('')}</div>
+        ${houseSizing()}
       </div>
     </section>
 
@@ -917,8 +918,36 @@ const INVERTER_GROUPS = [
   { tier: 'budget', title: 'Бюджетні', text: 'Прості інвертори, які надійно тримають резерв під час відключення, але не вміють заряджати батарею за нічним тарифом.' },
 ];
 
+const HOUSE_SIZES = [
+  ['до 100 м²', '6 кВт', '10 кВт·год'],
+  ['100–150 м²', '12 кВт', '16 кВт·год'],
+  ['150–250 м²', '20 кВт', '32 кВт·год'],
+  ['понад 250 м²', 'після консультації з інженером', ''],
+];
+
+function houseSizing() {
+  return `
+    <div class="sizing">
+      <div class="sizing__guide">
+        <h3>Яку систему ставити в будинок</h3>
+        <p>Більшість сучасних будинків мають трифазне підключення, тому для них радимо трифазну систему від 12 кВт. Орієнтовно за площею:</p>
+        <table class="sizing__table">
+          <thead><tr><th>Площа будинку</th><th>Інвертор</th><th>Батареї</th></tr></thead>
+          <tbody>${HOUSE_SIZES.map(([area, power, capacity]) => (capacity
+            ? `<tr><td>${area}</td><td>${power}</td><td>${capacity}</td></tr>`
+            : `<tr><td>${area}</td><td colspan="2">${power}</td></tr>`)).join('')}</tbody>
+        </table>
+      </div>
+      <div class="sizing__custom">
+        <h3>Індивідуальне замовлення</h3>
+        <p>Зберемо систему будь-якої потужності та ємності, зокрема високовольтні системи на 30–200 кВт з батареями до 1 МВт·год.</p>
+        <a class="btn btn--primary" href="#contact" data-consult="Індивідуальна система: потрібен розрахунок інженера">Розрахувати систему</a>
+      </div>
+    </div>`;
+}
+
 function categoryGrid(category, items) {
-  if (category === 'kit') return `<div class="kits__grid">${items.map((kit) => kitCard(kit, kit.id === 'kit-house')).join('')}</div>`;
+  if (category === 'kit') return `<div class="kits__grid">${items.map((kit) => kitCard(kit, kit.id === 'kit-house')).join('')}</div>${houseSizing()}`;
   if (category === 'inverter') {
     return INVERTER_GROUPS.map((group) => `
       <div class="catalog-group">

@@ -3919,3 +3919,86 @@ input[type='range'] {
     height: 34px;
   }
 }
+
+/* House sizing guide and custom systems, under the kits */
+.sizing {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(16px, 2vw, 28px);
+  margin-top: clamp(24px, 3vw, 40px);
+}
+
+.sizing__guide,
+.sizing__custom {
+  padding: clamp(20px, 2.5vw, 32px);
+  border-radius: 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.sizing__custom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--amber-glow);
+  border-color: rgba(217, 138, 23, 0.35);
+}
+
+.sizing h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.sizing p {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.sizing__custom .btn {
+  margin-top: auto;
+}
+
+.sizing__table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.sizing__table th,
+.sizing__table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.sizing__table th {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.sizing__table td {
+  font-weight: 600;
+}
+
+.sizing__table tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .sizing {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .sizing__table th,
+  .sizing__table td {
+    padding: 8px 6px;
+    font-size: 0.85rem;
+  }
+}
