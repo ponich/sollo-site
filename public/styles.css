@@ -3723,3 +3723,25 @@ input[type='range'] {
     transform: translate(44px, 25px) scale(0.78);
   }
 }
+
+/* Viber and WhatsApp contact cards */
+.channel__icon--viber {
+  background: #7360f2;
+  color: #fff;
+}
+
+.channel__icon--wa {
+  background: #25d366;
+  color: #fff;
+}
+
+.channel__icon--tg {
+  color: #fff;
+}
+
+/* Selected contact option in the form: amber, readable on the light contact section */
+.radio-pill input:checked + span {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #1f1c18;
+}

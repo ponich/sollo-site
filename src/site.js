@@ -15,6 +15,8 @@ module.exports = {
   phone2Label: '+38 (096) 512-26-49',
   telegram: 'Svitlo_one',
   telegramLabel: '@Svitlo_one',
+  // Viber and WhatsApp are on the main number
+  messengerPhone: '380935122649',
   workingHours: 'Пн–Сб, 9:00–20:00',
   openingHours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '09:00', closes: '20:00' },
   city: 'Київ',

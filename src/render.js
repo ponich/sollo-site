@@ -245,6 +245,14 @@ function contactSection(contextText = '') {
               <span class="channel__icon channel__icon--tg">${telegramIcon()}</span>
               <span><span class="channel__label">Telegram</span><strong>${esc(site.telegramLabel)}</strong></span>
             </a>
+            <a class="channel" href="${viberUrl()}">
+              <span class="channel__icon channel__icon--viber">${viberIcon()}</span>
+              <span><strong>Viber</strong></span>
+            </a>
+            <a class="channel" href="${whatsappUrl()}" target="_blank" rel="noopener">
+              <span class="channel__icon channel__icon--wa">${whatsappIcon()}</span>
+              <span><strong>WhatsApp</strong></span>
+            </a>
           </div>
           <p class="contact__hours">Працюємо ${esc(site.workingHours)}</p>
         </div>
@@ -276,6 +284,7 @@ function contactSection(contextText = '') {
             <label class="radio-pill"><input type="radio" name="contactVia" value="phone" checked><span>Дзвінок</span></label>
             <label class="radio-pill"><input type="radio" name="contactVia" value="telegram"><span>Telegram</span></label>
             <label class="radio-pill"><input type="radio" name="contactVia" value="viber"><span>Viber</span></label>
+            <label class="radio-pill"><input type="radio" name="contactVia" value="whatsapp"><span>WhatsApp</span></label>
           </fieldset>
           <label class="field">
             <span>Коментар</span>
@@ -287,6 +296,17 @@ function contactSection(contextText = '') {
         </form>
       </div>
     </section>`;
+}
+
+const viberUrl = () => `viber://chat?number=%2B${site.messengerPhone}`;
+const whatsappUrl = () => `https://wa.me/${site.messengerPhone}`;
+
+function viberIcon() {
+  return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11.4 2C7.6 2 4 3 3.4 7.6c-.4 3-.3 5.8.6 8.4.5 1.4 1.6 2.4 3 2.9v2.6c0 .5.6.7.9.3l2.4-2.6c.6 0 1.2.1 1.8 0 3.9-.1 7.4-1.3 8-5.4.4-2.8.4-5.6-.4-8.1C18.7 2.6 15 2 11.4 2Zm4.9 13c-.4.6-1 1.1-1.7 1-2.6-.6-4.9-2-6.6-4.2-.8-1-1.4-2.1-1.6-3.4-.1-.8.6-1.6 1.4-1.8.3-.1.6 0 .8.3l1 1.5c.2.3.2.8-.1 1l-.5.4c-.2.2-.2.4-.1.6.7 1.4 1.8 2.5 3.2 3.1.2.1.4 0 .6-.1l.5-.5c.3-.3.7-.3 1-.1l1.4 1c.3.3.4.7.2 1.1ZM12.6 6c2.6.2 4.4 2 4.6 4.6 0 .3-.2.5-.4.5s-.5-.2-.5-.4c-.2-2.1-1.6-3.6-3.7-3.8-.3 0-.5-.2-.4-.5 0-.2.2-.4.4-.4Zm.2 1.7c1.6.2 2.6 1.2 2.8 2.8 0 .3-.2.5-.4.5-.3 0-.5-.1-.5-.4-.2-1.1-.8-1.8-2-2-.2 0-.4-.3-.4-.5.1-.3.3-.4.5-.4Z" fill="currentColor"/></svg>';
+}
+
+function whatsappIcon() {
+  return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.2s.9 2.5 1 2.7c.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.8 3 .6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z" fill="currentColor"/></svg>';
 }
 
 function telegramIcon() {
@@ -351,6 +371,8 @@ function footer() {
         <a href="tel:${site.phone}">${esc(site.phoneLabel)}</a>
         <a href="tel:${site.phone2}">${esc(site.phone2Label)}</a>
         <a href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram ${esc(site.telegramLabel)}</a>
+        <a href="${viberUrl()}">Viber</a>
+        <a href="${whatsappUrl()}" target="_blank" rel="noopener">WhatsApp</a>
         <span>${esc(site.workingHours)}</span>
       </div>
     </div>

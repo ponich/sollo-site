@@ -73,7 +73,7 @@ function validateLead(input) {
     city: cleanText(input.city, 80),
     message: cleanText(input.message, 1500),
     context: cleanText(input.context, 1500),
-    contactVia: ['phone', 'telegram', 'viber'].includes(input.contactVia) ? input.contactVia : 'phone',
+    contactVia: ['phone', 'telegram', 'viber', 'whatsapp'].includes(input.contactVia) ? input.contactVia : 'phone',
   };
   const errors = {};
   if (lead.name.length < 2) errors.name = 'Вкажіть ім\'я';
@@ -120,7 +120,7 @@ async function notifyTelegram(lead) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
   if (!token || !chatId) return;
-  const contactLabels = { phone: 'дзвінок', telegram: 'Telegram', viber: 'Viber' };
+  const contactLabels = { phone: 'дзвінок', telegram: 'Telegram', viber: 'Viber', whatsapp: 'WhatsApp' };
   const lines = [
     `Нова заявка #${lead.id}`,
     `Ім'я: ${lead.name}`,
