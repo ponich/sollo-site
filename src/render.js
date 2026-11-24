@@ -336,8 +336,8 @@ function header() {
       </nav>
       <div class="topbar__contacts">
         <div class="topbar__phones">
-          <a class="topbar__phone" href="tel:${site.phone}">${esc(site.phoneLabel)}</a>
-          <a class="topbar__phone" href="tel:${site.phone2}">${esc(site.phone2Label)}</a>
+          <a class="topbar__phone" href="tel:${site.phone}"><svg class="topbar__phone-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg>${esc(site.phoneLabel)}</a>
+          <a class="topbar__phone" href="tel:${site.phone2}"><svg class="topbar__phone-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg>${esc(site.phone2Label)}</a>
         </div>
         <a class="btn btn--small btn--tg" href="https://t.me/${site.telegram}" target="_blank" rel="noopener">Telegram</a>
       </div>

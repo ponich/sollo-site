@@ -3745,3 +3745,73 @@ input[type='range'] {
   border-color: var(--amber);
   color: #1f1c18;
 }
+
+/* Small phone icon before each number in the header */
+.topbar__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.topbar__phone-icon {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  color: var(--amber-deep);
+}
+
+@media (max-width: 400px) {
+  .topbar__phone {
+    gap: 4px;
+  }
+
+  .topbar__phone-icon {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Header phone numbers stand out: a soft amber pill */
+.topbar__phones {
+  padding: 6px 14px;
+  border-radius: 14px;
+  background: rgba(242, 169, 59, 0.16);
+  border: 1px solid rgba(217, 138, 23, 0.28);
+  align-items: flex-start;
+}
+
+.topbar__phone {
+  color: var(--ink);
+}
+
+.topbar__phone:hover {
+  color: var(--amber-deep);
+}
+
+@media (max-width: 640px) {
+  .topbar__phones {
+    padding: 4px 8px;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .topbar__phones {
+    padding: 3px 6px;
+  }
+}
+
+/* Narrowest phones (≈320px): keep the highlighted numbers and the menu button inside the screen */
+@media (max-width: 360px) {
+  .topbar .topbar__inner {
+    gap: 8px;
+  }
+
+  .topbar .topbar__phone {
+    font-size: 0.72rem;
+  }
+
+  .topbar__phones {
+    padding: 3px 5px;
+  }
+}
