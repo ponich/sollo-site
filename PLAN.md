@@ -73,7 +73,7 @@ npm start
 | Служба сайту | `sollo-site` (`deploy/sollo-site.service`), Node 22, `127.0.0.1:3000`, автозапуск після перезавантаження |
 | HTTPS | Caddy, конфіг `deploy/Caddyfile` → `/etc/caddy/Caddyfile`; при деплої оновлюється і перезавантажується, якщо змінився |
 | Автооновлення | таймер `sollo-site-update.timer` щохвилини запускає `deploy/update.sh` |
-| Налаштування | `/root/apps/sollo-site/.env`: `PORT=3000`, `HOST=127.0.0.1`, `TRUST_PROXY=1`, `SITE_URL=https://svitlo-on.com`, `SITE_NOINDEX=1`, `SHOW_DRAFTS=1`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
+| Налаштування | `/root/apps/sollo-site/.env`: `PORT=3000`, `HOST=127.0.0.1`, `TRUST_PROXY=1`, `SITE_URL=https://svitlo-on.com`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` |
 | Заявки | `/root/apps/sollo-site/data/leads.json` |
 | Логи сайту | `journalctl -u sollo-site -f` |
 | Логи деплою | `journalctl -u sollo-site-update` |
@@ -91,7 +91,7 @@ git push origin develop
 
 `TRUST_PROXY=1` бере IP відвідувача із заголовків Cloudflare, щоб ліміт заявок рахувався для кожної людини окремо, а не для Cloudflare.
 
-Поки `SITE_NOINDEX=1`, сайт закритий від пошуковиків: усі сторінки з `noindex`, а `robots.txt` забороняє все. Перед запуском: прибрати `SITE_NOINDEX` і `SHOW_DRAFTS` з `.env` на сервері і перезапустити `sollo-site`.
+Сайт відкритий для індексації: сторінки з `index, follow`, `robots.txt` закриває лише `/api/` і вказує на `sitemap.xml`, чернетки не публікуються. Тому в `.env` на сервері немає `SITE_NOINDEX` і `SHOW_DRAFTS`. `SITE_NOINDEX=1` закриває весь сайт від пошуковиків (усі сторінки з `noindex`, `robots.txt` забороняє все), `SHOW_DRAFTS=1` показує чернетки робіт; після зміни `.env` треба перезапустити `sollo-site`.
 
 Сертифікат отримується через перевірку HTTP-01: Cloudflare пропускає `/.well-known/acme-challenge/` на сервер по HTTP. Режим SSL у Cloudflare має бути Full (strict); режим Flexible дасть нескінченну переадресацію.
 
